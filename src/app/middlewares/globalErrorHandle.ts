@@ -8,6 +8,7 @@ import { handleZodError } from '../errors/handleZodError';
 import { handleDuplicateError } from '../errors/handleDuplicateError';
 import { handleCastError } from '../errors/handleCastError';
 import { handleValidationError } from '../errors/handleValidationError';
+import config from '../config';
 
 export const globalErrorHandle = async (
   error: any,
@@ -64,8 +65,7 @@ export const globalErrorHandle = async (
       success: false,
       message,
       errorMessages,
-      stack: error?.stack || null, // this is not a best way
-      // stack: config.nodeEnv === 'development' ? error?.stack : null, // this is a proper way
+      stack: config.nodeEnv === 'development' ? error?.stack : null,
       // error,
     });
   }

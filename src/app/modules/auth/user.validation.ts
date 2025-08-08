@@ -30,3 +30,23 @@ export const verifyEmailValidation = z.object({
     .length(6, 'OTP must be exactly 6 digits')
     .regex(/^\d{6}$/, 'OTP must contain only digits'),
 });
+
+export const userSigninValidation = z.object({
+  email: z.string().email('Please provide a valid email address.').trim(),
+  password: z.string('Please provide your password.'),
+});
+
+export const forgetPasswordValidation = z.object({
+  email: z.string().email('Please provide a valid email address.').trim(),
+});
+
+export const resetPasswordValidation = z.object({
+  token: z.string('Reset token is required'),
+  newPassword: z
+    .string()
+    .min(8, 'New password must be at least 8 characters.')
+    .regex(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])/,
+      'New password must contain an uppercase letter, a lowercase letter, a number, and a special character.',
+    ),
+});

@@ -4,7 +4,7 @@ export type TUser = {
   email: string;
   phone: string;
   address: string;
-  password: string;
+  password?: string;
   role: 'customer' | 'seller' | 'admin';
   status: 'active' | 'inactive' | 'blocked';
   createdAt?: Date;

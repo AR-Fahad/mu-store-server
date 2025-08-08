@@ -1,4 +1,5 @@
 import jwt, { JwtPayload } from 'jsonwebtoken';
+import { AppError } from '../errors/AppError';
 
 export const jwtSignUp = (
   payload: JwtPayload,
@@ -10,13 +11,13 @@ export const jwtSignUp = (
 };
 
 export const jwtVerify = (token: string, secret: string): JwtPayload | null => {
-  let decoded: JwtPayload | null = null;
+  let decoded: JwtPayload | undefined;
   jwt.verify(token, secret, (err, decodedToken) => {
     if (err) {
-      decoded = null;
+      throw new AppError(401, err.name, err.message);
     } else {
       decoded = decodedToken as JwtPayload;
     }
   });
-  return decoded;
+  return decoded as JwtPayload;
 };
