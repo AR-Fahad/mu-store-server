@@ -23,6 +23,10 @@ const storeSchema = new Schema<TStore>(
       type: String,
       trim: true,
     },
+    isOpen: {
+      type: Boolean,
+      required: true,
+    },
     isActive: {
       type: Boolean,
       default: false,

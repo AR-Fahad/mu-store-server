@@ -5,6 +5,7 @@ export const createStoreValidation = z.object({
   name: z.string().min(1, 'Store name is required').trim(),
   description: z.string().min(1, 'Store description is required').trim(),
   image: z.string().url('Please provide a valid image URL').optional(),
+  isOpen: z.boolean('isOpen is required'),
 });
 
 export const updateStoreValidation = z.object({
@@ -15,4 +16,5 @@ export const updateStoreValidation = z.object({
     .trim()
     .optional(),
   image: z.string().url('Please provide a valid image URL').optional(),
+  isOpen: z.boolean('isOpen is required').optional(),
 });

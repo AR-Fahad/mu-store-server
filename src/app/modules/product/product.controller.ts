@@ -30,7 +30,43 @@ const updateProduct = catchAsync(async (req, res) => {
   });
 });
 
+const getAllProducts = catchAsync(async (req, res) => {
+  const result = await ProductService.getAllProducts(req.query);
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: 'Products retrieved successfully',
+    data: result,
+  });
+});
+
+const getSingleProduct = catchAsync(async (req, res) => {
+  const result = await ProductService.getSingleProduct(req.params.productId);
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: 'Product retrieved successfully',
+    data: result,
+  });
+});
+
+const deleteProduct = catchAsync(async (req, res) => {
+  const result = await ProductService.deleteProduct(
+    req.user as JwtPayload,
+    req.params.productId,
+  );
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: 'Product deleted successfully',
+    data: result,
+  });
+});
+
 export const ProductController = {
   addProduct,
   updateProduct,
+  getAllProducts,
+  deleteProduct,
+  getSingleProduct,
 };

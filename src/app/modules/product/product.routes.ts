@@ -23,4 +23,14 @@ productRouter.put(
   ProductController.updateProduct,
 );
 
+productRouter.delete(
+  '/:productId',
+  auth('seller'),
+  ProductController.deleteProduct,
+);
+
+productRouter.get('/:productId', ProductController.getSingleProduct);
+
+productRouter.get('/', ProductController.getAllProducts);
+
 export default productRouter;

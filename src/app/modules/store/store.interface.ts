@@ -8,6 +8,7 @@ type TStore = {
   description: string;
   image?: string;
   isActive: boolean;
+  isOpen: boolean;
 };
 
 export default TStore;

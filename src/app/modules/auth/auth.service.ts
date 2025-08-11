@@ -11,6 +11,12 @@ import { otpHtmlContent, resetHtmlContent } from '../../constant/htmlContent';
 const createUser = async (userData: Partial<TUser>) => {
   const { email, role } = userData as TUser;
 
+  const isUserExists = await User.findOne({ email });
+
+  if (isUserExists) {
+    throw new AppError(409, 'email', 'User with this email already exists.');
+  }
+
   if (role === 'admin') {
     throw new Error('Admin role cannot be created through this endpoint');
   }
